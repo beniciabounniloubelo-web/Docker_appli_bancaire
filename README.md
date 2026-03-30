@@ -1,9 +1,12 @@
-# Mini Projet de DEV4.2
+# BankApp — Application bancaire web
 
-## Intro
+Application bancaire fictive déployée via Docker.  
+**Contenu :** gestion de comptes · virements · historique des transactions · authentification  
+**Stack :** Python · HTML · CSS · Docker
 
-En grandes lignes, on va faire une application bancaire en web, sur un modèle à trois.
+> Projet académique — BUT Informatique
 
+# Structure du projet
 L'application se compose alors en trois parties :
 
 ### Backend (API FastAPI) : 
@@ -24,15 +27,4 @@ dépendanaces et liens vers les fichiers pour que le
 ```bash
 sudo docker compose up
 ```
-prenne en compte leur lien dans un premier temps, puis après ce sera dans le docker compose.
-## Ressources
-
-- Énoncé : [Sujet](https://grond.iut-fbleau.fr/menault/DEV_42_Docker/src/branch/main/mini-projet.txt)
-- Documentation : [Docker](https://docs.docker.com/)
-
-## Credits :
-
-- [Arwa Benfraj](https://grond.iut-fbleau.fr/benfraj)
-- [Benicia Bounni Loubelo](https://grond.iut-fbleau.fr/bounnilo)
-- [Ibrahima BAH](https://grond.iut-fbleau.fr/bah)
-- [Tarehi Zaabay](https://grond.iut-fbleau.fr/zaabay)
+prenne en compte leur lien dans un premier 
