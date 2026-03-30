@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Poor bank</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Banque des Pauvres</h1>
+
+    <nav id="nav-menu" style="display:none;" class="container">
+        <button onclick="showSection('section-home')">Tableau de Bord</button>
+        <button onclick="showSection('section-virements')">Transactions</button>
+        <button onclick="logout()">Déconnexion</button>
+    </nav>
+
+    <section id="section-register" class="container">
+        <h2>Rejoindre la banque</h2>
+        <p style="color: #00ff00; font-weight: bold;">💸 Offre de bienvenue : +15€ (16-25 ans) ou +10€ (+25 ans) !</p>
+        <input type="text" id="reg-nom" placeholder="Nom complet" required>
+        <input type="email" id="reg-email" placeholder="Email" required>
+        
+        <input type="number" id="reg-age" placeholder="Âge" min="1" value="16">
+        <input type="password" id="reg-pass" placeholder="Mot de passe (8 car. min)" required>
+        <button onclick="register()">Créer mon compte</button>
+        <p style="cursor: pointer; text-decoration: underline;" onclick="showSection('section-login')">Déjà inscrit ? Connexion</p>
+    </section>
+
+    <section id="section-login" class="container" style="display:none;">
+        <h2>Connexion</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-pass" placeholder="Mot de passe">
+        <button onclick="login()">Se connecter</button>
+    </section>
+
+    <section id="section-home" class="container" style="display:none;">
+        <h2>Tableau de bord de <span id="user-display"></span></h2>
+        <p>Votre IBAN : <strong id="iban-display"></strong></p>
+        
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+            <div id="comptes-list" style="flex: 1; min-width: 200px;"></div>
+            <div style="flex: 1; min-width: 300px; background: #fff; padding: 10px; border: 3px inset #808080;">
+                <canvas id="financeChart"></canvas>
+            </div>
+            <div class="item" style="background: #dcdcdc; margin-top: 10px;">
+                <h3>Ouvrir un nouveau produit</h3>
+                <select id="type-nouveau-compte">
+                    <option value="Livret A">Livret A (Taux 3%)</option>
+                    <option value="Assurance Vie">Assurance Vie</option>
+                    <option value="PEL">PEL</option>
+                </select>
+                <button onclick="ouvrirCompte()">Ouvrir</button>
+            </div>
+        </div>
+
+        <div id="admin-panel" style="display: none; background: #ffe6e6; padding: 15px; margin-top: 20px; border: 3px inset #ff0000;">
+            <h2 style="color: red;"> Vue Directeur (Admin)</h2>
+            <p>Liste de tous les comptes de la banque :</p>
+            <div id="admin-list" style="height: 150px; overflow-y: auto; background: white; padding: 5px;"></div>
+        </div>
+    </section>
+
+    <section id="section-virements" class="container" style="display:none;">
+        <div class="item" style="margin-bottom: 20px;">
+            <h2>Ajouter un bénéficiaire</h2>
+            <input type="text" id="benef-name" placeholder="Surnom (ex: Papa)">
+            <input type="email" id="benef-email" placeholder="Email de la personne">
+            <button onclick="addBenef()">Ajouter</button>
+        </div>
+        <div class="item" style="background: #e0f0ff;">
+            <h3>Simuler un dépôt externe (Salaire/Aide)</h3>
+            <input type="number" id="depot-montant" placeholder="Somme à recevoir" min="10">
+            <button onclick="recevoirArgent()">Recevoir</button>
+        </div>
+
+        <div class="item" style="background: #e6ffe6; margin-bottom: 20px;">
+            <h2>Virement entre mes comptes</h2>
+            <select id="interne-source" required><option value="">-- Compte à débiter --</option></select>
+            <select id="interne-dest" required><option value="">-- Compte à créditer --</option></select>
+            <input type="number" id="interne-montant" placeholder="Montant (€)" min="1">
+            <button onclick="virementInterne()">Transférer</button>
+        </div>
+
+        <h2>Effectuer un virement</h2>
+        <select id="source" required><option value="">-- Compte à débiter --</option></select>
+        <select id="dest" required><option value="">-- Bénéficiaire --</option></select>
+        <div id="virement-container">
+            <input type="number" id="montant" placeholder="Montant (€)" min="2">
+            <span id="msg-erreur-montant" style="color: red; display: none; font-size: 0.8em;"></span>
+        </div>
+
+        <button onclick="transfvir()">Confirmer</button>
+
+        <h2>Historique des Transactions</h2>
+        <div id="historique-list" style="text-align: left; background: #fff; color: #000; padding: 10px; height: 150px; overflow-y: auto; border: 3px inset #808080;">
+            </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>

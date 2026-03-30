@@ -1,0 +1,8 @@
+Base de données 
+
+fichier .env :
+-permet de centraliser les infos sensibles et variables de configuration
+-permet de changer facilement des infos du docker-compose.yml
+
+fichier docker-compose.yml : 
+-db-data c pr la persistance des donnees 

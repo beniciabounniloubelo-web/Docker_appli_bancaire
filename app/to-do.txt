@@ -1,0 +1,6 @@
+TO DO LIST:
+- tester en local le projet - histoire de voir si le backend fonctionne
+- faire dockerfile
+- finir docker-compose
+- mettre le tout dans docker
+- tester si connexions se font dans docker

@@ -1,0 +1,58 @@
+NOTES GENERALES------------------------------------------------------
+- faire le backend
+- finir docker compose
+- faire le lien entre les diff fichiers sans docker
+
+
+
+
+BACKEND------------------------------------------------------
+2) notes///
+dans un dossier backend
+=> changer le nom en init.sql du fichier de la structure de la base de donnees
+=> dans le yml ajouter le service db et monter le fichier en volumes pour qu'il se lance au démarrage
+=> creer le dossier backend 
+=> dedans mettre un fichier main.py ds lequel on se connecte a la base de donnees 
+(=> et aussi mettre un ficheir requirements.txt contenant le nom des librairies)
+=> on cree les routes dans le ficheir main.py
+=> test du backend avec Postman ou curl pour verifier que les requetes retournent bien les donnees
+requete dans le terminal apres:
+curl http://localhost:8000/comptes/1
+
+pour le docker compose:
+backend:
+  build: ./backend
+  ports:
+    - "8000:8000"
+  depends_on:
+    - postgres
+
+pour le backend/dockerfile:
+FROM python:3.11
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+pour lancer dans le terminal:
+docker-compose up --build
+
+pour le termianl pour tester:
+curl http://localhost:8000/comptes/1
+
+
+SI ON SOUHAITE TESTER SANS ETRE EN DOCKER:
+avec FastAPI...?
+
+Notes importantes:
+Deux choses importantes à savoir : le %s dans les requêtes SQL c'est pour éviter les injections SQL (ne jamais coller les variables directement dans la string), et le conn.commit() est obligatoire après chaque INSERT ou UPDATE pour que les changements soient bien sauvegardés en base.
+
+
+
+FRONTEND------------------------------------------------------
+3) notes///
+dans un dossier frontend
+=> mettre les fichiers .css, .js et .html
+=> le main.js dois pointer vers le backend via nginx
+=> teste du backend localement avec le backend qui fonctionne
