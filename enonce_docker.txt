@@ -1,0 +1,42 @@
+Mini projet : 
+  Création d'appli bancaire
+
+Objectif :
+  Créer les containers d'une application bancaire simple permettant de gérer des utilisateurs, des comptes bancaires (courant et épargne), d'ajouter des bénéficiaires, de faire des virements entre des comptes
+
+Livrables :
+  Docker DB Postgres :
+    Schema de DB pour gérer la banque
+
+  Docker Python Backend :
+    Gestion des virement entre compte
+    Gestion virement entre personne
+    Gestion virement depuis autre banque
+    Création de compte utilisateur
+    Ouverture compte bancaire (courant, livret A, Assurance vie)
+    Gestion des bénéficiaires
+    Demande de virement
+
+  Docker Appli Frontend :
+    Connexion a un compte
+    Visualisation des comptes
+    Ajout de bénéficiaire
+    Faire un virement
+
+  Rapport de projet :
+    Explication du contenu des différents dockers
+    Explication du fonctionnement de chaque appli
+    Schema de DB
+    Notions de sécurité
+    Explication docker compose
+    Autres paragraphes que vous jugerez utiles
+
+Notation :
+  10 points sur les dockerfile / docker compose / networks / volumes / ...
+  6 points sur le code
+  4 points sur le contenu du rapport
+
+Optionnel (points bonus) :
+  docker secret
+  Création d'un quatrième docker s'occupant des intérêts des comptes épargne (ex: +3% journalier sur les comptes de type épargne)
+  Implémentation de Healthcheck
